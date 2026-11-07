@@ -31,5 +31,11 @@ variable "private_subnet_cidrs" {
 variable "bedrock_model_id" {
   description = "The ONE Bedrock foundation model the role may invoke. Model access must be enabled in the Bedrock console first."
   type        = string
-  default     = "anthropic.claude-3-haiku-20240307-v1:0"
+  default     = "amazon.nova-micro-v1:0"
+}
+
+variable "bedrock_inference_profile_id" {
+  description = "Inference profile used to call the model."
+  type        = string
+  default     = "amazon.nova-micro-v1:0"
 }

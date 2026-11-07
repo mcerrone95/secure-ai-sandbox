@@ -169,9 +169,12 @@ resource "aws_iam_role" "workload" {
 
 data "aws_iam_policy_document" "workload" {
   statement {
-    sid       = "InvokeOneBedrockModel"
-    actions   = ["bedrock:InvokeModel", "bedrock:ApplyGuardrail"]
-    resources = ["arn:aws:bedrock:${var.region}::foundation-model/${var.bedrock_model_id}"]
+    sid     = "InvokeOneBedrockModel"
+    actions = ["bedrock:InvokeModel"]
+    resources = [
+      "arn:aws:bedrock:${var.region}:${data.aws_caller_identity.current.account_id}:inference-profile/${var.bedrock_inference_profile_id}",
+      "arn:aws:bedrock:us-*::foundation-model/${var.bedrock_model_id}",
+    ]
   }
 
   statement {
